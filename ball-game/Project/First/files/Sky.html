@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>Babylon.js sample code</title>
+        <!-- Babylon.js -->
+        <script src="https://www.babylonjs.com/hand.minified-1.2.js"></script>
+        <script src="https://preview.babylonjs.com/cannon.js"></script>
+        <script src="https://preview.babylonjs.com/oimo.js"></script>
+        <script src="https://preview.babylonjs.com/babylon.js"></script>
+        <style>
+            html, body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            #renderCanvas {
+                width: 100%;
+                height: 100%;
+                touch-action: none;
+            }
+        </style>
+    </head>
+<body>
+    <div id="canvasZone">
+        <canvas id="renderCanvas"></canvas>
+    </div>
+    <script>
+	
+        var canvas = document.getElementById("renderCanvas");
+        var engine = new BABYLON.Engine(canvas, true);
+
+        var createScene = function () {
+            var scene = new BABYLON.Scene(engine);
+        
+            //Create a light
+            var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(-60, 60, 80), scene);
+     
+            //Create an Arc Rotate Camera - aimed negative z this time
+            var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, 1.0, 110, BABYLON.Vector3.Zero(), scene);
+            camera.attachControl(canvas, true);
+            return scene;
+        };
+        
+        
+          
+        
+        
+        var scene = createScene();
+
+        engine.runRenderLoop(function () {
+            scene.render();
+
+			
+        // Resize
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					var a = 1;
+					var b = 1;
+					var c = 1;
+					var scale = 4;
+
+					var plane = BABYLON.Mesh.CreatePlane("plane", 520, scene);
+					var materialPlane = new BABYLON.StandardMaterial("texturePlane", scene);
+					materialPlane.diffuseTexture = new BABYLON.Texture(" sky/lol.jpg", scene);
+				//	materialPlane.opacityTexture = new BABYLON.Texture(" sky/lol.jpg", scene);
+					materialPlane.diffuseTexture.hasAlpha = true;
+				//	materialPlane.opacityTexture.getAlphaFromRGB = true;
+					//materialPlane.alpha = 0.5;
+		
+					var plane2 = BABYLON.Mesh.CreatePlane("plane2", 520, scene);
+					var materialPlane2 = new BABYLON.StandardMaterial("texturePlane", scene);
+					materialPlane2.diffuseTexture = new BABYLON.Texture(" sky/lol.jpg", scene);
+					materialPlane2.opacityTexture = new BABYLON.Texture(" sky/lol.jpg", scene);
+					materialPlane2.diffuseTexture.hasAlpha = true;
+					materialPlane2.opacityTexture.getAlphaFromRGB = true;
+				//	materialPlane2.alpha = 0.4;
+					
+					var plane3 = BABYLON.Mesh.CreatePlane("plane3", 520, scene);
+					var materialPlane3 = new BABYLON.StandardMaterial("texturePlane", scene);
+					materialPlane3.diffuseTexture = new BABYLON.Texture(" sky/lol.jpg", scene);
+					materialPlane3.opacityTexture = new BABYLON.Texture(" sky/lol.jpg", scene);
+					materialPlane3.diffuseTexture.hasAlpha = true;
+					materialPlane3.opacityTexture.getAlphaFromRGB = true;
+				//	materialPlane3.alpha = 0.5;
+			
+					function offset(){
+					plane.position.y = -5;
+					plane.rotation.x = Math.PI / 2;
+					materialPlane.diffuseTexture.uScale = scale-1;
+					materialPlane.diffuseTexture.vScale = scale-1;
+					if(!(scale % 2)) {
+						materialPlane.diffuseTexture.uOffset = a / scale;
+						materialPlane.diffuseTexture.vOffset = a / scale;
+					}
+					materialPlane.backFaceCulling = false;
+				   plane.material = materialPlane;
+				   a=a+0.00025;
+				}
+					function offset2(){
+					plane2.position.y = -55;
+					plane2.rotation.x = Math.PI / 2;
+					materialPlane2.diffuseTexture.uScale = scale;
+					materialPlane2.diffuseTexture.vScale = scale;
+					if(!(scale % 2)) {
+						materialPlane2.diffuseTexture.uOffset = -b / scale;
+						materialPlane2.diffuseTexture.vOffset = b / scale;
+					}
+					materialPlane2.backFaceCulling = false;
+				   plane2.material = materialPlane2;
+				   b=b+0.0005;
+				}
+					function offset3(){
+					plane3.position.y = -105;
+					plane3.rotation.x = Math.PI / 2;
+					materialPlane3.diffuseTexture.uScale = scale;
+					materialPlane3.diffuseTexture.vScale = scale;
+					if(!(scale % 2)) {
+						materialPlane3.diffuseTexture.uOffset = -c / scale;
+						materialPlane3.diffuseTexture.vOffset = -c / scale;
+					}
+					materialPlane3.backFaceCulling = false;
+				   plane3.material = materialPlane3;
+				   c=c+0.001;
+				}
+				
+					setInterval(offset, 1);
+					setInterval(offset3, 1);
+					setInterval(offset2, 1);
+	
+    </script>
+</body>
+</html>

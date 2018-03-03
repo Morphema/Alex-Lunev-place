@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html>
+
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum scale =1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+
+    <title>Second level</title>
+    <!-- Babylon.js -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://www.babylonjs.com/hand.minified-1.2.js"></script>
+    <script src="https://preview.babylonjs.com/cannon.js"></script>
+    <script src="https://preview.babylonjs.com/oimo.js"></script>
+    <script src="https://preview.babylonjs.com/babylon.js"></script>
+    <script src="tween.js"></script>
+    <script src="velocity.min.js"></script>
+ 
+    <style>
+        html,
+        body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #renderCanvas {
+            width: 100%;
+            height: 100vh;
+            touch-action: none;
+        }
+		
+#header {
+            font-family: Open Sans;
+            font-size: 45px;
+            position: absolute;
+            width: 100%;
+            height: 0px;
+            z-index: 1;
+            opacity: 1;
+            background-color: #FFFFFF;
+            color: white;
+        }
+		
+.gameover2:hover{
+opacity:0;
+}
+
+       
+    </style>
+		 <span id="header"><img id = "firstball" style = "margin-top:2%; margin-left:1.6%" width = "40px" height = "40px" src = "files/1.png"><img id = "secondball" style = "margin-top:2%;" width = "40px" height = "40px" src = "files/1.png"><img id = "thirdball" style = "margin-top:2%;" width = "40px" height = "40px" src = "files/1.png"><img id = "fourthball" style = "margin-top:2%;display:none" width = "40px" height = "40px" src = "files/1.png"><img id = "fifthball" style = "margin-top:2%;display:none" width = "40px" height = "40px" src = "files/1.png"></span> 
+ <meta charset="utf-8"/>
+     <span style = "display:none" id = "gameover1"  class = "gameover1"><img style = "position:absolute;width:30%; margin-top:37%;margin-left:4%;" src = "Gameover1.png"> </img></span>
+     <span style = "display:none" id = "gameover2" class = "gameover2"><img style = "position:absolute;width:37%; margin-top:32%" src = "Gameover2.png"> </img></span>
+	
+	<span style = "display:none" id = "Menu1" class = "Menu1"><img style = "position:absolute;width:12%;margin-left:86%;margin-top:1%;z-index:0;" src = "Menu.png"> </img></span>
+	
+	<span style = "display:none" id = "Menu2" class = "Menu2"><a href = "../../start.html"><img style = "position:absolute;width:15%;margin-left:84.5%;z-index:1;" src = "Menu2.png"> </img></a></span>
+	 
+
+</head>
+    
+    <body>
+
+	<div id ="CanvasZone">
+        <canvas id="renderCanvas"></canvas>
+	</div>
+	
+ <script>
+
+    var canvas = document.getElementById("renderCanvas");//Поиск элемента рендера
+    var engine =  new BABYLON.Engine(canvas, true);//создание движка	 
+	var scene = new BABYLON.Scene(engine);//Создание сцены
+	
+	BABYLON.SceneLoader.Load("2nd/","second.babylon",engine,function(scene){ //Подгрузка нужного файла
+	scene.executeWhenReady(function() {
+BABYLON.SceneLoader.ImportMesh("","2nd/","5-2.babylon", scene, function (mesh) {});
+	
+	//AUDIO FILES
+	var start = new Audio('Audio/Misc_StartLevel.wav');
+	var Dragons = new Audio('Whatever.mp3');
+	var change = new Audio('Audio/Misc_Trafo.wav');
+	var fall = new Audio('Audio/Misc_Fall.wav');
+	var checkpoint = new Audio('Audio/Misc_Checkpoint.wav');
+	var teleportation = new Audio('Audio/Teleport.wav');
+//START AUDIO PLAY
+	start.play();
+	Dragons.play();
+	//ОСНОВНЫЕ СЧЁТЧИКИ
+  var lifes = 3;
+  var InBasket = 0;
+  var save1 = 0;
+  var save2 = 0;
+  var useless = 0;
+  var changecount1=0;
+  var changecount2=0;
+  var hallo=0;
+
+
+
+
+                   
+ 
+// Cоздание мешей, сферы...
+
+//СОЗДАНИЕ МЕШЕЙ
+    var Portal_start = scene.getMeshByName("Portal_start");
+	var Checkpoint1 = scene.getMeshByName("Checkpoint1");
+	var Checkpoint2 = scene.getMeshByName("Checkpoint2");
+	var Portalfinish = scene.getMeshByName("Portalfinish");
+    var Longroad  = scene.getMeshByName("G-Long_road");
+	var Light1  = scene.getMeshByName("Light1");
+	var Light2  = scene.getMeshByName("Light2");
+	var Light3  = scene.getMeshByName("Light3");
+	var Light4  = scene.getMeshByName("Light4");
+	var Light5  = scene.getMeshByName("Light5");
+	var Light6  = scene.getMeshByName("Light6");
+	var Light7	= scene.getMeshByName("Light7");
+	var Flashlight1	= scene.getMeshByName("Flashlight1");
+	var Flashlight2	= scene.getMeshByName("Flashlight2");
+	var Flashlight3	= scene.getMeshByName("Flashlight3");
+	var Flashlight4	= scene.getMeshByName("Flashlight4");
+	var Flashlight5	= scene.getMeshByName("Flashlight5");
+	var Flashlight6	= scene.getMeshByName("Flashlight6");
+	var Flashlight7	= scene.getMeshByName("Flashlight7");
+	var Flashlight8	= scene.getMeshByName("Flashlight8");
+	var Flashlight9	= scene.getMeshByName("Flashlight9");
+	var Flashlight10 = scene.getMeshByName("Flashlight10");
+	var Flashlight11 = scene.getMeshByName("Flashlight11");
+	var Flashlight12 = scene.getMeshByName("Flashlight12");	
+	var Flashlight13 = scene.getMeshByName("Flashlight13");	
+	var Flashlight14 = scene.getMeshByName("Flashlight1.001");
+	var Flashlight15 = scene.getMeshByName("Flashlight1.002");
+	var Nextroad = scene.getMeshByName("G-Next_road");
+	var Corner = scene.getMeshByName("G-Corner");
+	var NextCorner = scene.getMeshByName("G-Next_Corner");
+	var LittleRoad = scene.getMeshByName("G-Little_road");
+	var SecondRoad = scene.getMeshByName("G-Second_road");
+	var BigCorner = scene.getMeshByName("G-Big_Corner");
+	var Hill = scene.getMeshByName("G-Hill");
+	var FinalRoad = scene.getMeshByName("G-Final_Road");
+	var FinalStep = scene.getMeshByName("G-Final_Step");
+	var Truba = scene.getMeshByName("G-Truba");
+	var Block1 = scene.getMeshByName("Block1");
+	var Block2 = scene.getMeshByName("Block2");	
+	var Easy01 = scene.getMeshByName("Easy1");
+	var Easy02 = scene.getMeshByName("Easy2");
+	var Easy03 = scene.getMeshByName("Easy3");
+	var Easy04 = scene.getMeshByName("Easy4");
+	var Easy05 = scene.getMeshByName("Easy5");
+	var Easy06 = scene.getMeshByName("Easy6");
+	var Easy07 = scene.getMeshByName("Easy7");
+    var Life1 = scene.getMeshByName("Life1");
+	var Life2 = scene.getMeshByName("Life2");
+
+	
+	
+	
+	
+
+	
+	//СОЗДАНИЕ ДОПОЛНИТЕЛЬНЫХ СФЕР И ИХ ХАРАКТЕРИСТИКИ
+	 var Easy1 = BABYLON.Mesh.CreateSphere("Easy1",105,1.2,scene); //Создание самой сферы
+	 
+				   Easy1.position.x = scene.getMeshByName("Easy1").position.x+0.25;
+                   Easy1.position.y = scene.getMeshByName("Easy1").position.y+0.3;//Позиция сферы
+                   Easy1.position.z = scene.getMeshByName("Easy1").position.z-0.2;
+      
+                    Easy1.scaling.x = 0.4;
+                    Easy1.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                    Easy1.scaling.z = 0.4;
+					
+	 var Easy2 = BABYLON.Mesh.CreateSphere("Easy2",105,1.2,scene); //Создание самой сферы
+	 
+				   Easy2.position.x = scene.getMeshByName("Easy2").position.x+0.25;
+                   Easy2.position.y = scene.getMeshByName("Easy2").position.y+0.3;//Позиция сферы
+                   Easy2.position.z = scene.getMeshByName("Easy2").position.z-0.2;
+      
+                    Easy2.scaling.x = 0.4;
+                    Easy2.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                    Easy2.scaling.z = 0.4;	
+					
+	 var Easy3 = BABYLON.Mesh.CreateSphere("Easy3",105,1.2,scene); //Создание самой сферы
+	 
+				   Easy3.position.x = scene.getMeshByName("Easy3").position.x+0.25;
+                   Easy3.position.y = scene.getMeshByName("Easy3").position.y+0.3;//Позиция сферы
+                   Easy3.position.z = scene.getMeshByName("Easy3").position.z-0.2;
+      
+                   Easy3.scaling.x = 0.4;
+                   Easy3.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                   Easy3.scaling.z = 0.4;		
+				   
+	 var Easy4 = BABYLON.Mesh.CreateSphere("Easy4",105,1.2,scene); //Создание самой сферы
+	 
+				   Easy4.position.x = scene.getMeshByName("Easy4").position.x+0.25;
+                   Easy4.position.y = scene.getMeshByName("Easy4").position.y+0.3;//Позиция сферы
+                   Easy4.position.z = scene.getMeshByName("Easy4").position.z-0.2;
+      
+                   Easy4.scaling.x = 0.4;
+                   Easy4.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                   Easy4.scaling.z = 0.4;				
+				   
+	 var Easy5 = BABYLON.Mesh.CreateSphere("Easy5",105,1.2,scene); //Создание самой сферы
+	 
+				   Easy5.position.x = scene.getMeshByName("Easy5").position.x+0.25;
+                   Easy5.position.y = scene.getMeshByName("Easy5").position.y+0.3;//Позиция сферы
+                   Easy5.position.z = scene.getMeshByName("Easy5").position.z-0.2;
+      
+                   Easy5.scaling.x = 0.4;
+                   Easy5.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                   Easy5.scaling.z = 0.4;					
+
+		 var Easy6 = BABYLON.Mesh.CreateSphere("Easy6",105,1.2,scene); //Создание самой сферы
+	 
+				   Easy6.position.x = scene.getMeshByName("Easy6").position.x+0.25;
+                   Easy6.position.y = scene.getMeshByName("Easy6").position.y+0.3;//Позиция сферы
+                   Easy6.position.z = scene.getMeshByName("Easy6").position.z-0.2;
+      
+                   Easy6.scaling.x = 0.4;
+                   Easy6.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                   Easy6.scaling.z = 0.4;					
+			   
+		 var Easy7 = BABYLON.Mesh.CreateSphere("Easy7",105,1.2,scene); //Создание самой сферы
+	 
+				   Easy7.position.x = scene.getMeshByName("Easy7").position.x+0.25;
+                   Easy7.position.y = scene.getMeshByName("Easy7").position.y+0.3;//Позиция сферы
+                   Easy7.position.z = scene.getMeshByName("Easy7").position.z-0.2;
+      
+                   Easy7.scaling.x = 0.4;
+                   Easy7.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                   Easy7.scaling.z = 0.4;
+
+var Lifetrue1 = BABYLON.Mesh.CreateSphere("Lifetrue1",105,1.2,scene); //Создание самой сферы
+	 
+				   Lifetrue1.position.x = scene.getMeshByName("Life1").position.x+0.2;
+                   Lifetrue1.position.y = scene.getMeshByName("Life1").position.y;//Позиция сферы
+                   Lifetrue1.position.z = scene.getMeshByName("Life1").position.z-0.27;
+      
+                   Lifetrue1.scaling.x = 0.4;
+                   Lifetrue1.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                   Lifetrue1.scaling.z = 0.4;				   
+				   Life1.dispose();
+				   
+var Lifetrue2 = BABYLON.Mesh.CreateSphere("Lifetrue2",105,1.2,scene); //Создание самой сферы
+	 
+				   Lifetrue2.position.x = scene.getMeshByName("Life2").position.x+0.2;
+                   Lifetrue2.position.y = scene.getMeshByName("Life2").position.y-0.07;//Позиция сферы
+                   Lifetrue2.position.z = scene.getMeshByName("Life2").position.z-0.27;
+      
+                   Lifetrue2.scaling.x = 0.4;
+                   Lifetrue2.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                   Lifetrue2.scaling.z = 0.4;		
+				   Life2.dispose();
+		
+		
+		var extra1 = BABYLON.Mesh.CreateSphere("extra1",105,1.2,scene); //Создание самой сферы
+	 
+				   extra1.position.x = 13.75;
+                   extra1.position.y = 3.66;
+                   extra1.position.z = 62.08+0.45;
+      
+                   extra1.scaling.x = 0.1;
+                   extra1.scaling.y = 0.1; //РАЗМЕРЫ СФЕРЫ
+                   extra1.scaling.z = 0.1;	
+				   
+				   extra1.visibility=false;
+				   
+				
+		var extra2 = BABYLON.Mesh.CreateSphere("extra2",105,1.2,scene); //Создание самой сферы
+	 
+				   extra2.position.x = 18.42+0.2;
+                   extra2.position.y = 2.12;
+                   extra2.position.z = 90.50+0.4;
+      
+                   extra2.scaling.x = 0.4;
+                   extra2.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                   extra2.scaling.z = 0.4;	
+				   
+			
+				   extra2.visibility=false;
+				   
+				   
+		var extra3 = BABYLON.Mesh.CreateSphere("extra3",105,1.2,scene); //Создание самой сферы
+	 
+				   extra3.position.x = 20.99;
+                   extra3.position.y = 3.22;
+                   extra3.position.z = 90.10-0.8;
+      
+                   extra3.scaling.x = 0.4;
+                   extra3.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                   extra3.scaling.z = 0.4;	
+
+				   extra3.visibility=false;
+				   
+						   
+		var extra4 = BABYLON.Mesh.CreateSphere("extra4",105,1.2,scene); //Создание самой сферы
+	 
+				   extra4.position.x = 20.08+0.2;
+                   extra4.position.y = 2.82;
+                   extra4.position.z = 91.74+0.5;
+      
+                   extra4.scaling.x = 0.4;
+                   extra4.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                   extra4.scaling.z = 0.4;	
+
+				   extra4.visibility=false;	
+
+		var extra5 = BABYLON.Mesh.CreateSphere("extra5",105,1.2,scene); //Создание самой сферы
+	 
+				   extra5.position.x = 22.88+0.4;
+                   extra5.position.y = 4.10;
+                   extra5.position.z = 90.39+0.3;
+      
+                   extra5.scaling.x = 0.4;
+                   extra5.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                   extra5.scaling.z = 0.4;	
+
+				   extra5.visibility=false;	
+				   
+	var finalextra = BABYLON.Mesh.CreateSphere("finalextra",105,1.2,scene); //Создание самой сферы
+	 
+				   finalextra.position.x = 22.93;
+                   finalextra.position.y = 1.76;
+                   finalextra.position.z = 135.10-0.35;
+      
+                   finalextra.scaling.x = 0.1;
+                   finalextra.scaling.y = 0.1; //РАЗМЕРЫ СФЕРЫ
+                   finalextra.scaling.z = 0.1;	
+				   finalextra.visibility=false;
+				   
+					//Удаление Доп.Сфер
+	
+	Easy01.dispose();
+	Easy02.dispose();
+	Easy03.dispose();
+	Easy04.dispose();
+	Easy05.dispose();
+	Easy06.dispose();
+	Easy07.dispose();
+	
+	//FUNCTIONS
+	 function Unfreeze ()
+	 {
+	     sphere.physicsImpostor.setMass(15);	
+	 }
+ 
+	 function Moon()
+	 {
+	 sphere.material = materialmoon;
+	 }
+	 
+	  function Neiron()
+	 {
+	 sphere.material = materialneiron;
+	 }
+	 
+	  function Default()
+	 {
+	 sphere.material = materialdefault;
+	 }
+	 
+	 function teleport1 ()
+	 {
+				 sphere.position.x = scene.getMeshByName("G-Hill").position.x+0.3;
+                 sphere.position.y = scene.getMeshByName("G-Hill").position.y+3.5;//Подъём
+                 sphere.position.z = scene.getMeshByName("G-Hill").position.z+2;
+	 }
+	 // Функции для возрождения мяча
+	 function Normal()
+	 {
+	 	 
+	  sphere.physicsImpostor = new BABYLON.PhysicsImpostor(sphere, BABYLON.PhysicsImpostor.SphereImpostor, {
+                        mass: 15,
+                        friction: 0.5,
+                        restitution: 0.5 //Возобновление нормальных параметров физики мяча
+                    }, scene);
+		
+	 }
+	 
+	 function Nullmass()
+	 {
+	 sphere.physicsImpostor.setMass(0);
+	 }
+	 
+	 //AUDIO-FUNCTIONS
+	 
+	 function imaginedragon()
+	 {
+	 imagine.play();
+	 }
+	 
+	 function fallsound()
+	 {
+	 fall.play();
+	 }
+	 
+	 function changesound()
+	 {
+	 change.play();
+	 }
+	 
+	 function startsound()
+	 {
+	 start.play();
+	 }
+	 
+	 function checkpointsound()
+	 {
+	 checkpoint.play();
+	 }
+
+	//PARTICLE FUNCTIONS
+	 
+function lifekiller() {
+particleSystem.stop();
+}
+
+function lifecreator() {
+particleSystem.start();
+}
+
+
+function portalcreator() {
+portalSystem.start();
+}
+
+
+function portalcreator2() {
+portalSystem2.start();
+}
+
+function portalkiller() {
+portalSystem2.stop();
+}
+
+function bombskiller() {
+Bombs.stop();
+}
+
+
+function bombscreator() {
+}
+
+function bombskiller2() {
+Bombs2.stop();			
+}
+
+function bombscreator2() {
+Bombs2.start();
+
+}
+
+	//Easy01.dispose();
+	
+//СОЗДАНИЕ СФЕРЫ И ЕЁ ХАРАКТЕРИСТИКИ
+   var sphere = BABYLON.Mesh.CreateSphere("sphere",105,1.2,scene); //Создание самой сферы
+   
+			   sphere.position.x = scene.getMeshByName("Sphere").position.x;
+              sphere.position.y = scene.getMeshByName("Sphere").position.y+1;//Стартовая позиция
+               sphere.position.z = scene.getMeshByName("Sphere").position.z;
+				 
+				   
+				// sphere.position.x = scene.getMeshByName("Checkpoint1").position.x+0.8;
+                 //sphere.position.y = scene.getMeshByName("Checkpoint1").position.y+1;//Чекпоинт1  //POSITIONS
+               // sphere.position.z = scene.getMeshByName("Checkpoint1").position.z+0.4;
+				 
+				// sphere.position.x = scene.getMeshByName("G-Hill").position.x+0.3;
+                 //sphere.position.y = scene.getMeshByName("G-Hill").position.y+3.5;//Подъём
+                 //sphere.position.z = scene.getMeshByName("G-Hill").position.z+2;
+				 
+				 
+				 
+				 
+				 //sphere.position.x = scene.getMeshByName("Checkpoint2").position.x+0.95;
+                //sphere.position.y = scene.getMeshByName("Checkpoint2").position.y+1.5;//Чекпоинт2
+                 //sphere.position.z = scene.getMeshByName("Checkpoint2").position.z+0.7;
+      
+
+	  
+                    sphere.scaling.x = 0.4;
+                    sphere.scaling.y = 0.4; //РАЗМЕРЫ СФЕРЫ
+                    sphere.scaling.z = 0.4;
+					
+
+	//ДВИЖЕНИЕ СФЕРЫ/УПРАВЛЕНИЕ
+	 var mvtDirection = [0,0,0,0];
+
+function move() {
+if(InBasket==0)
+{
+        var s = 14;
+
+        if (mvtDirection[0] != 0) {
+            sphere.applyImpulse(new BABYLON.Vector3(0,0,s), sphere.position);
+
+        }
+        if (mvtDirection[1] != 0) {
+            sphere.applyImpulse(new BABYLON.Vector3(0,0,-s), sphere.position);
+
+        }
+        if (mvtDirection[2] != 0) {
+            sphere.applyImpulse(new BABYLON.Vector3(-s,0,0), sphere.position);
+
+        }
+        if (mvtDirection[3] != 0) {
+            sphere.applyImpulse(new BABYLON.Vector3(s,0,0), sphere.position);
+
+        }
+
+    }
+    }
+	    
+  window.onkeydown = function(event) {  
+                        if (event.keyCode == 87) {
+                           // this._chooseDirection(2, 0);
+              mvtDirection[0]=1;
+                        }
+                        if (event.keyCode == 83) {
+                           // this._chooseDirection(3, 1); //право
+              mvtDirection[1]=1;
+                        }
+                        if (event.keyCode == 68) {
+                           // this._chooseDirection(0, 1); //вверх
+              mvtDirection[3]=1;
+                        }
+                        if (event.keyCode == 65) {
+                           // this._chooseDirection(1, 1); //низ   
+              mvtDirection[2]=1;
+}            
+
+move();
+  
+ 
+    window.onkeyup = function(event) {  
+                        if (event.keyCode == 87) {
+              mvtDirection[0]=0;
+                        }
+                        if (event.keyCode == 83) {
+              mvtDirection[1]=0;
+                        }
+                        if (event.keyCode == 68) {
+              mvtDirection[3]=0;
+                        }
+                        if (event.keyCode == 65) {
+              mvtDirection[2]=0;
+}            
+move();
+  }
+  }
+
+		
+					//CAMERA
+					
+					  var camera = scene.activeCamera;
+
+                  //  camera.maxZ = 1000;
+				  
+                    camera.position.y = sphere.position.y+3 ;
+                    camera.position.z = sphere.position.z-2.5;
+                    camera.position.x = sphere.position.x+0.2;
+					camera.rotation = new BABYLON.Vector3(Math.PI/3.1, 18.85, 0);
+					
+
+
+
+               // camera.attachControl(canvas, false); -для свободной камеры
+					
+			//Удаление контроль-сферы
+			
+     var falsesphere = scene.getMeshByName("Sphere");
+
+	 
+	 //Сцена получает физику
+	  var gravityVector = new BABYLON.Vector3(0, -9.8, 0); //Здесь настраивать силу графитации
+
+                    var physicsPlugin = new BABYLON.CannonJSPlugin();
+                    scene.enablePhysics(gravityVector, physicsPlugin);
+					
+	//Объекты получают физические свойства				
+	 
+	 //ИМПОСТОР СФЕРЫ
+	 
+	  sphere.physicsImpostor = new BABYLON.PhysicsImpostor(sphere, BABYLON.PhysicsImpostor.SphereImpostor, {
+                        mass: 15,
+                        friction: 0.5,
+                        restitution: 0.5
+                    }, scene);
+		
+		
+		
+		
+		//ИМПОСТОРЫ МЕШЕЙ
+		
+		 Portal_start.physicsImpostor = new BABYLON.PhysicsImpostor(Portal_start, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);
+					
+		Checkpoint1.physicsImpostor = new BABYLON.PhysicsImpostor(Checkpoint1, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);
+					
+		Checkpoint2.physicsImpostor = new BABYLON.PhysicsImpostor(Checkpoint2, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);
+					
+		Portalfinish.physicsImpostor = new BABYLON.PhysicsImpostor(Portalfinish, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);
+					
+		Longroad.physicsImpostor = new BABYLON.PhysicsImpostor(Longroad, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);
+					
+		Light1.physicsImpostor = new BABYLON.PhysicsImpostor(Light1, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);
+	
+		Light2.physicsImpostor = new BABYLON.PhysicsImpostor(Light2, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);
+					
+		Light3.physicsImpostor = new BABYLON.PhysicsImpostor(Light3, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);
+
+		Light4.physicsImpostor = new BABYLON.PhysicsImpostor(Light4, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);	
+
+	Nextroad.physicsImpostor = new BABYLON.PhysicsImpostor(Nextroad, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);	
+
+	Corner.physicsImpostor = new BABYLON.PhysicsImpostor(Corner, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);	
+					
+	NextCorner.physicsImpostor = new BABYLON.PhysicsImpostor(NextCorner, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);	
+					
+	BigCorner.physicsImpostor = new BABYLON.PhysicsImpostor(BigCorner, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);					
+
+	LittleRoad.physicsImpostor = new BABYLON.PhysicsImpostor(LittleRoad, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);
+					
+	SecondRoad.physicsImpostor = new BABYLON.PhysicsImpostor(SecondRoad, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);	
+		
+	Hill.physicsImpostor = new BABYLON.PhysicsImpostor(Hill, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);	
+					
+	FinalRoad.physicsImpostor = new BABYLON.PhysicsImpostor(FinalRoad, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);	
+
+	FinalStep.physicsImpostor = new BABYLON.PhysicsImpostor(FinalStep, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);		
+
+	Truba.physicsImpostor = new BABYLON.PhysicsImpostor(Truba, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);					
+					
+	Block1.physicsImpostor = new BABYLON.PhysicsImpostor(Block1, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);	
+
+	Block2.physicsImpostor = new BABYLON.PhysicsImpostor(Block2, BABYLON.PhysicsImpostor.MeshImpostor, {
+                        mass: 0,
+                        friction: 1,
+                        restitution: 0.1
+                    }, scene);	
+					
+					//ИМПОСТОРЫ ДОПОЛНИТЕЛЬНЫХ СФЕР
+						Easy1.physicsImpostor = new BABYLON.PhysicsImpostor(Easy1, BABYLON.PhysicsImpostor.SphereImpostor, {
+                        mass: 50,
+                        friction: 0.1,
+                        restitution: 0.1
+                    }, scene);	
+
+					Easy2.physicsImpostor = new BABYLON.PhysicsImpostor(Easy2, BABYLON.PhysicsImpostor.SphereImpostor, {
+                        mass: 15,
+                        friction: 0.9,
+                        restitution: 0.9
+                    }, scene);	
+					
+						Easy3.physicsImpostor = new BABYLON.PhysicsImpostor(Easy3, BABYLON.PhysicsImpostor.SphereImpostor, {
+                        mass: 15,
+                        friction: 0.9,
+                        restitution: 0.9
+                    }, scene);
+					
+						Easy4.physicsImpostor = new BABYLON.PhysicsImpostor(Easy4, BABYLON.PhysicsImpostor.SphereImpostor, {
+                        mass: 15,
+                        friction: 0.9,
+                        restitution: 0.9
+                    }, scene);
+					
+						Easy5.physicsImpostor = new BABYLON.PhysicsImpostor(Easy5, BABYLON.PhysicsImpostor.SphereImpostor, {
+                        mass: 15,
+                        friction: 0.9,
+                        restitution: 0.9
+                    }, scene);
+					
+						Easy6.physicsImpostor = new BABYLON.PhysicsImpostor(Easy6, BABYLON.PhysicsImpostor.SphereImpostor, {
+                        mass: 8,
+                        friction: 1.3,
+                        restitution: 1.3
+                    }, scene);
+						
+						Easy7.physicsImpostor = new BABYLON.PhysicsImpostor(Easy7, BABYLON.PhysicsImpostor.SphereImpostor, {
+                        mass: 8,
+                        friction: 1.3,
+                        restitution: 1.3
+                    }, scene);
+					
+					
+					
+					
+						 //НЕВИДИМОСТЬ
+						 Checkpoint1.visibility = true;
+						 Checkpoint2.visibility = true;
+					
+						 
+						 
+						 	 // Create a particle system
+	 
+                     // Create a particle system
+					 
+					 //LIFE PARTICLE SYSTEM
+					 
+    var particleSystem = new BABYLON.ParticleSystem("particles", 500, scene);
+
+    //Texture of each particle
+    particleSystem.particleTexture = new BABYLON.Texture("files/life.png", scene);
+
+    // Where the particles come from
+    particleSystem.emitter = sphere; // the starting object, the emitter
+    particleSystem.minEmitBox = new BABYLON.Vector3(-1, 0, 0); // Starting all from
+    particleSystem.maxEmitBox = new BABYLON.Vector3(1, 0, 0); // To...
+
+    // Colors of all particles
+    particleSystem.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
+    particleSystem.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
+    particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+
+    // Size of each particle (random between...
+    particleSystem.minSize = 0.1;
+    particleSystem.maxSize = 0.3;
+
+    // Life time of each particle (random between...
+    particleSystem.minLifeTime = 0.3;
+    particleSystem.maxLifeTime = 0.6;
+
+    // Emission rate
+    particleSystem.emitRate = 600;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    particleSystem.gravity = new BABYLON.Vector3(0, -9.81, 0);
+
+    // Direction of each particle after it has been emitted
+    particleSystem.direction1 = new BABYLON.Vector3(-7, 8, 3);
+    particleSystem.direction2 = new BABYLON.Vector3(7, 8, -3);
+
+    // Angular speed, in radians
+    particleSystem.minAngularSpeed = 0;
+    particleSystem.maxAngularSpeed = Math.PI;
+
+    // Speed
+    particleSystem.minEmitPower = 1;
+    particleSystem.maxEmitPower = 3;
+    particleSystem.updateSpeed = 0.005;
+
+    // Start the particle system
+	particleSystem.start();
+	setTimeout(lifekiller,2000);
+
+		 //TELEPORT for sphere PARTICLE SYSTEM
+	 
+	 var portalSystem2 = new BABYLON.ParticleSystem("particles", 500, scene);
+
+    //Texture of each particle
+    portalSystem2.particleTexture = new BABYLON.Texture("files/flare.png", scene);
+
+    // Where the particles come from
+    portalSystem2.emitter = sphere; // the starting object, the emitter
+    portalSystem2.minEmitBox = new BABYLON.Vector3(-1, 0, 0); // Starting all from
+    portalSystem2.maxEmitBox = new BABYLON.Vector3(1, 0, 0); // To...
+
+    // Colors of all particles
+    portalSystem2.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
+    portalSystem2.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
+    portalSystem2.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+
+    // Size of each particle (random between...
+    portalSystem2.minSize = 0.1;
+    portalSystem2.maxSize = 0.3;
+
+    // Life time of each particle (random between...
+    portalSystem2.minLifeTime = 0.3;
+    portalSystem2.maxLifeTime = 0.6;
+
+    // Emission rate
+    portalSystem2.emitRate = 600;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    portalSystem2.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    portalSystem2.gravity = new BABYLON.Vector3(0, -9.81, 0);
+
+    // Direction of each particle after it has been emitted
+    portalSystem2.direction1 = new BABYLON.Vector3(-7, 8, 3);
+    portalSystem2.direction2 = new BABYLON.Vector3(7, 8, -3);
+	
+	//Color
+	  portalSystem2.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
+     portalSystem2.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
+     portalSystem2.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+
+    // Angular speed, in radians
+    portalSystem2.minAngularSpeed = 0;
+    portalSystem2.maxAngularSpeed = Math.PI;
+
+    // Speed
+    portalSystem2.minEmitPower = 1;
+    portalSystem2.maxEmitPower = 3;
+    portalSystem2.updateSpeed = 0.005;
+	
+			//Bombs for sphere PARTICLE SYSTEM
+	 
+	 var Bombs = new BABYLON.ParticleSystem("particles", 500, scene);
+
+    //Texture of each particle
+    Bombs.particleTexture = new BABYLON.Texture("files/flare.png", scene);
+
+    // Where the particles come from
+    Bombs.emitter = Easy6; // the starting object, the emitter
+    Bombs.minEmitBox = new BABYLON.Vector3(-1, 0, 0); // Starting all from
+    Bombs.maxEmitBox = new BABYLON.Vector3(1, 0, 0); // To...
+
+    // Colors of all particles
+    Bombs.color1 = new BABYLON.Color4(1, 0.5, 0, 1.0);
+    Bombs.color2 = new BABYLON.Color4(1, 0.5, 0, 1.0);
+    Bombs.colorDead = new BABYLON.Color4(1, 0.5, 0, 1.0);
+
+    // Size of each particle (random between...
+    Bombs.minSize = 0.1;
+    Bombs.maxSize = 0.3;
+
+    // Life time of each particle (random between...
+    Bombs.minLifeTime = 0.3;
+    Bombs.maxLifeTime = 0.6;
+
+    // Emission rate
+    Bombs.emitRate = 600;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    Bombs.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    Bombs.gravity = new BABYLON.Vector3(0, -9.81, 0);
+
+    // Direction of each particle after it has been emitted
+    Bombs.direction1 = new BABYLON.Vector3(-7, 8, 3);
+    Bombs.direction2 = new BABYLON.Vector3(7, 8, -3);
+	
+	//Color
+	  Bombs.color1 = new BABYLON.Color4(1, 0.5, 0, 1.0);
+     Bombs.color2 = new BABYLON.Color4(1, 0.5, 0, 1.0);
+     Bombs.colorDead = new BABYLON.Color4(1, 0.5, 0, 1.0);
+
+    // Angular speed, in radians
+    Bombs.minAngularSpeed = 0;
+    Bombs.maxAngularSpeed = Math.PI;
+
+    // Speed
+    Bombs.minEmitPower = 1;
+    Bombs.maxEmitPower = 3;
+    Bombs.updateSpeed = 0.005;
+	
+			//Bombs2 for sphere PARTICLE SYSTEM
+	 
+	 var Bombs2 = new BABYLON.ParticleSystem("particles", 500, scene);
+
+    //Texture of each particle
+    Bombs2.particleTexture = new BABYLON.Texture("files/flare.png", scene);
+
+    // Where the particles come from
+    Bombs2.emitter = Easy7; // the starting object, the emitter
+    Bombs2.minEmitBox = new BABYLON.Vector3(-1, 0, 0); // Starting all from
+    Bombs2.maxEmitBox = new BABYLON.Vector3(1, 0, 0); // To...
+
+    // Colors of all particles
+    Bombs2.color1 = new BABYLON.Color4(1, 0.5, 0, 1.0);
+    Bombs2.color2 = new BABYLON.Color4(1, 0.5, 0, 1.0);
+    Bombs2.colorDead = new BABYLON.Color4(1, 0.5, 0, 1.0);
+
+    // Size of each particle (random between...
+    Bombs2.minSize = 0.1;
+    Bombs2.maxSize = 0.3;
+
+    // Life time of each particle (random between...
+    Bombs2.minLifeTime = 0.3;
+    Bombs2.maxLifeTime = 0.6;
+
+    // Emission rate
+    Bombs2.emitRate = 600;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    Bombs2.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    Bombs2.gravity = new BABYLON.Vector3(0, -9.81, 0);
+
+    // Direction of each particle after it has been emitted
+    Bombs2.direction1 = new BABYLON.Vector3(-7, 8, 3);
+    Bombs2.direction2 = new BABYLON.Vector3(7, 8, -3);
+	
+	//Color
+	  Bombs2.color1 = new BABYLON.Color4(1, 0.5, 0, 1.0);
+     Bombs2.color2 = new BABYLON.Color4(1, 0.5, 0, 1.0);
+     Bombs2.colorDead = new BABYLON.Color4(1, 0.5, 0, 1.0);
+
+    // Angular speed, in radians
+    Bombs2.minAngularSpeed = 0;
+    Bombs2.maxAngularSpeed = Math.PI;
+
+    // Speed
+    Bombs2.minEmitPower = 1;
+    Bombs2.maxEmitPower = 3;
+    Bombs2.updateSpeed = 0.005;
+
+                   // Skybox
+
+
+                    var skybox = BABYLON.Mesh.CreateBox("skyBox", 100.0, scene);
+                    var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+                    skyboxMaterial.backFaceCulling = false;
+                    skyboxMaterial.disableLighting = false;
+                    skybox.material = skyboxMaterial;
+                    skybox.infiniteDistance = true;
+                    skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+                    skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+                    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("Skybox/Spaceview", scene);
+                    skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+					
+						
+	
+
+						 //ТЕКСТУРЫ
+						 
+					//Invisible sphere
+					
+	var invisible = new BABYLON.StandardMaterial("invisible", scene);
+    invisible.refractionTexture = new BABYLON.CubeTexture("Skybox/Spaceview", scene);
+    invisible.reflectionTexture = new BABYLON.CubeTexture("Skybox/Spaceview", scene);
+    invisible.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    invisible.invertRefractionY = false;
+    invisible.indexOfRefraction = 0.98;
+    invisible.specularPower = 128;
+   
+    
+    invisible.refractionFresnelParameters = new BABYLON.FresnelParameters();
+    invisible.refractionFresnelParameters.power = 2;
+    invisible.reflectionFresnelParameters = new BABYLON.FresnelParameters();
+    invisible.reflectionFresnelParameters.power = 2;
+    invisible.reflectionFresnelParameters.leftColor = BABYLON.Color3.Black();
+    invisible.reflectionFresnelParameters.rightColor = BABYLON.Color3.White();
+    invisible.specularPower = 9999999;
+  
+						 //DEFAULT
+		                    var materialdefault = new BABYLON.StandardMaterial("texture", scene);
+                    materialdefault.diffuseTexture = new BABYLON.Texture("Textures for sketch/Metal_Ball.jpg", scene); //Дерево      
+                    materialdefault.emissiveTexture = new BABYLON.Texture("Textures for sketch/Metal_Ball.jpg", scene);
+                    materialdefault.emissiveTexture.vOffset = 0.1; //Vertical offset of 10%
+                    materialdefault.emissiveTexture.uOffset = 0.4; //Horizontal offset of 40%
+                    materialdefault.emissiveColor = new BABYLON.Color3(.1, .1, .1);
+
+                    materialdefault.ambientTexture = new BABYLON.Texture("Textures for sketch/Metal_Ball.jpg", scene);
+                    materialdefault.ambientTexture.vOffset = 0.1; //Vertical offset of 10%
+                    materialdefault.ambientTexture.uOffset = 0.4; //Horizontal offset of 40%
+
+                    materialdefault.specularTexture = new BABYLON.Texture("Textures for sketch/Metal_Ball.jpg", scene);
+                    materialdefault.specularTexture.vOffset = 0.1; //Vertical offset of 10%
+                    materialdefault.specularTexture.uOffset = 0.4; //Horizontal offset of 40%
+
+                    materialdefault.specularPower = 9999999;
+					
+					//MOON
+					var materialneiron= new BABYLON.StandardMaterial("texture", scene);
+                    materialneiron.diffuseTexture = new BABYLON.Texture("Textures for sketch/Neiron.jpg", scene); //Дерево      
+                    materialneiron.emissiveTexture = new BABYLON.Texture("Textures for sketch/Neiron.jpg", scene);
+                    materialneiron.emissiveTexture.vOffset = 0.1; //Vertical offset of 10%
+                    materialneiron.emissiveTexture.uOffset = 0.4; //Horizontal offset of 40%
+                    materialneiron.emissiveColor = new BABYLON.Color3(.1, .1, .1);
+
+                    materialneiron.ambientTexture = new BABYLON.Texture("Textures for sketch/Neiron.jpg", scene);
+                    materialneiron.ambientTexture.vOffset = 0.1; //Vertical offset of 10%
+                    materialneiron.ambientTexture.uOffset = 0.4; //Horizontal offset of 40%
+
+                    materialneiron.specularTexture = new BABYLON.Texture("Textures for sketch/Neiron.jpg", scene);
+                    materialneiron.specularTexture.vOffset = 0.1; //Vertical offset of 10%
+                    materialneiron.specularTexture.uOffset = 0.4; //Horizontal offset of 40%
+
+                    materialneiron.specularPower = 1000;
+					
+					//Neiron
+					
+					var materialmoon= new BABYLON.StandardMaterial("texture", scene);
+                    materialmoon.diffuseTexture = new BABYLON.Texture("Textures for sketch/Moon_Ball.jpg", scene); //Дерево      
+                    materialmoon.emissiveTexture = new BABYLON.Texture("Textures for sketch/Moon_Ball.jpg", scene);
+                    materialmoon.emissiveTexture.vOffset = 0.1; //Vertical offset of 10%
+                    materialmoon.emissiveTexture.uOffset = 0.4; //Horizontal offset of 40%
+                    materialmoon.emissiveColor = new BABYLON.Color3(.1, .1, .1);
+
+                    materialmoon.ambientTexture = new BABYLON.Texture("Textures for sketch/Moon_Ball.jpg", scene);
+                    materialmoon.ambientTexture.vOffset = 0.1; //Vertical offset of 10%
+                    materialmoon.ambientTexture.uOffset = 0.4; //Horizontal offset of 40%
+
+                    materialmoon.specularTexture = new BABYLON.Texture("Textures for sketch/Moon_Ball.jpg", scene);
+                    materialmoon.specularTexture.vOffset = 0.1; //Vertical offset of 10%
+                    materialmoon.specularTexture.uOffset = 0.4; //Horizontal offset of 40%
+
+                    materialmoon.specularPower = 6000;
+					
+					
+					//Нанесение материалов
+					  sphere.material = materialdefault;
+					  Easy1.material =  materialmoon;
+					  Easy2.material = materialdefault;
+					  Easy3.material = materialdefault;
+					  Easy4.material = materialdefault;
+					  Easy5.material = materialdefault;
+					  Easy6.material = materialneiron;
+					  Easy7.material = materialneiron;
+					  Lifetrue1.material = invisible;
+					  Lifetrue2.material = invisible;
+						 
+	Block1.visibility = false;					
+	Block2.visibility = false;	
+	falsesphere.visibility=false;
+		
+ 
+	 engine.runRenderLoop(function(){ //ПОСТОЯННАЯ ПРОРИСОВКА СЦЕНЫ
+	 
+					camera.position.y = sphere.position.y+3 ;
+                    camera.position.z = sphere.position.z-2.5;
+                    camera.position.x = sphere.position.x+0.2;
+
+	 scene.render();
+	 
+	 					 // console.log( sphere.position.x.toFixed(2)); 
+                         //console.log( sphere.position.y.toFixed(2)); 
+						 //console.log( sphere.position.z.toFixed(2)); 
+	
+
+						
+	//ПРОВЕРКИ НА ПЕРЕСЕЧЕНИЕ С ЗАМЕНОЙ ТЕКСТУРЫ
+
+						if (sphere.intersectsMesh(extra1, false)&&sphere.material != materialdefault) {
+
+							setTimeout(changesound,1500);
+                            sphere.physicsImpostor.setMass(0);
+							setTimeout(Unfreeze, 4000);
+							setTimeout(Default, 2000);
+							
+							sphere.position.x = 13.75;
+							sphere.position.y = 3.66;
+							sphere.position.z = 62.08+0.1;						 
+                        }
+						
+						
+						if (sphere.intersectsMesh(extra2, false)) {
+						
+							teleportation.play();
+							setTimeout(teleport1,0);
+							setTimeout(portalcreator2,0);
+							setTimeout(portalkiller,2000);
+						    setTimeout(Moon, 0);
+						    
+							sphere.position.x = 18.42-0.15;
+							sphere.position.y = 2.12;
+							sphere.position.z = 90.50+0.2;
+                        }
+						
+						if (sphere.intersectsMesh(extra3, false)) {
+							teleportation.play();
+							setTimeout(teleport1,0);
+							setTimeout(portalcreator2,0);
+							setTimeout(portalkiller,2000);
+							
+							setTimeout(Moon, 0);
+						    
+							sphere.position.x = 20.99+0.3;
+							sphere.position.y = 3.22+0.1;
+							sphere.position.z = 90.10-0.8;
+							
+                        }
+						
+						if (sphere.intersectsMesh(extra4, false)) {
+							teleportation.play();
+							setTimeout(teleport1,0);
+							setTimeout(portalcreator2,0);
+							setTimeout(portalkiller,2000);
+						    setTimeout(Moon, 0);
+							sphere.position.x = 20.08+0.2;
+							sphere.position.y = 2.82;
+							sphere.position.z = 91.74+0.5;
+                        }
+						
+						if (sphere.intersectsMesh(extra5, false)) {
+							teleportation.play();
+							setTimeout(teleport1,0);
+							setTimeout(portalcreator2,0);
+							setTimeout(portalkiller,2000);
+						    setTimeout(Moon, 0);
+							sphere.position.x = 22.88+0.3;
+							sphere.position.y = 4.10+0.1;
+							sphere.position.z = 90.39+0.3
+							 
+                        }
+						
+						
+						
+						//ПРОЧИЕ ПРОВЕРКИ
+						if (sphere.intersectsMesh(Checkpoint1, false)&&save1==0) {
+						checkpoint.play();
+						
+						particleSystem.start();
+						setTimeout(lifekiller,1500);
+						
+						useless=0;
+						save1=1;
+						save2=0;						
+						}
+						
+						if (sphere.intersectsMesh(Checkpoint2, false)&&save2==0) {
+						checkpoint.play();
+						
+						useless=0;
+						save1=0;
+						save2=1;
+						
+						particleSystem.start();
+						setTimeout(lifekiller,1500);
+						}
+						
+						if (sphere.intersectsMesh(Portal_start, false)) {
+						useless=1;
+						save1=0;
+						save2=0;
+						}
+						
+						
+						if(sphere.position.y<-15)
+						{
+						fall.play();
+						   if(useless==1)
+						   {
+			   sphere.position.x = scene.getMeshByName("Sphere").position.x;
+               sphere.position.y = scene.getMeshByName("Sphere").position.y+1;//Позиция сферы - СТАРТОВАЯ
+               sphere.position.z = scene.getMeshByName("Sphere").position.z;
+			   
+
+			   
+			   sphere.physicsImpostor.setMass(0); //"Заморозка"
+			   setTimeout(Unfreeze, 1000); //"разморозка"
+			               }
+						   
+							if(save1==1)
+						   {
+			   	sphere.position.x = scene.getMeshByName("Checkpoint1").position.x+0.8;
+                sphere.position.y = scene.getMeshByName("Checkpoint1").position.y+1;//Позиция сферы - 1-CHECKPOINT
+                sphere.position.z = scene.getMeshByName("Checkpoint1").position.z+0.4;
+
+			   
+			   sphere.physicsImpostor.setMass(0); //"Заморозка"
+			   setTimeout(Unfreeze, 1000); //"разморозка"
+			               }
+						   
+							if(save2==1)
+						   {
+				 sphere.position.x = scene.getMeshByName("Checkpoint2").position.x+0.95;
+                 sphere.position.y = scene.getMeshByName("Checkpoint2").position.y+2;//Позиция сферы - 2-CHECKPOINT
+                 sphere.position.z = scene.getMeshByName("Checkpoint2").position.z+0.7;
+				
+
+			   
+			   sphere.physicsImpostor.setMass(0); //"Заморозка"
+			   setTimeout(Unfreeze, 1000); //"разморозка"
+			               }							   
+
+						   
+			   
+			   
+			   
+
+		
+		 lifes--; //уменьшение жизней
+						}
+						
+		 //  sphere.physicsImpostor.setMass(0); //ЗДЕСЬ
+		
+		if(Easy1.position.y<-10)
+		{
+			Easy1.dispose();
+		}
+		
+		if(Easy2.position.y<-10)
+		{
+			Easy2.dispose();
+		}
+		
+		if(Easy3.position.y<-10)
+		{
+			Easy3.dispose();
+		}
+		
+		if(Easy4.position.y<-10) //УДАЛЕНИЕ СФЕР
+		{
+			Easy4.dispose();
+		}
+		
+		if(Easy5.position.y<-10)
+		{
+			Easy5.dispose();
+		}
+		
+		if(Easy6.position.y<-10)
+		{
+			Easy6.dispose();
+		}
+		
+		if(Easy7.position.y<-10)
+		{
+			Easy7.dispose();
+		}
+		
+		//ПРОВЕРКИ НА ЖИЗНЬ
+		                        if (lifes < 1) {
+                           // document.getElementById('over').style.display = 'block';
+                            document.getElementById('firstball').style.display = 'none';
+                            document.getElementById('secondball').style.display = 'none';
+                            document.getElementById('thirdball').style.display = 'none';
+                            document.getElementById('fourthball').style.display = 'none';
+                            document.getElementById('fifthball').style.display = 'none';                      
+                            //document.getElementById('button-right').style.display = 'none';
+                            document.getElementById('gameover1').style.display = 'block';
+							document.getElementById('gameover2').style.display = 'block';
+							document.getElementById('Menu1').style.display = 'block';
+							document.getElementById('Menu2').style.display = 'block';
+							
+						sphere.position.x = 0.25;
+						sphere.position.y = 3; //ПРОВЕРКА НА ПАДЕНИЕ
+						sphere.position.z = -0.9;
+						
+ sphere.physicsImpostor.setMass(0);
+					
+                        }
+						
+		                        if (lifes == 1) {
+                            document.getElementById('firstball').style.display = 'inline-block';
+                            document.getElementById('secondball').style.display = 'none';
+                            document.getElementById('thirdball').style.display = 'none';
+                            document.getElementById('fourthball').style.display = 'none';
+                            document.getElementById('fifthball').style.display = 'none';
+                        }
+                        if (lifes == 2) {
+                            document.getElementById('firstball').style.display = 'inline-block';
+                            document.getElementById('secondball').style.display = 'inline-block';
+                            document.getElementById('thirdball').style.display = 'none';
+                            document.getElementById('fourthball').style.display = 'none';
+                            document.getElementById('fifthball').style.display = 'none';
+                        }
+                        if (lifes == 3) {
+                            document.getElementById('firstball').style.display = 'inline-block';
+                            document.getElementById('secondball').style.display = 'inline-block';
+                            document.getElementById('thirdball').style.display = 'inline-block';
+                            document.getElementById('fourthball').style.display = 'none';
+                            document.getElementById('fifthball').style.display = 'none';
+                        }
+                        if (lifes == 4) {
+                            document.getElementById('firstball').style.display = 'inline-block';
+                            document.getElementById('secondball').style.display = 'inline-block';
+                            document.getElementById('thirdball').style.display = 'inline-block';
+                            document.getElementById('fourthball').style.display = 'inline-block';
+                            document.getElementById('fifthball').style.display = 'none';
+                        }
+                        if (lifes == 5) {
+                            document.getElementById('firstball').style.display = 'inline-block';
+                            document.getElementById('secondball').style.display = 'inline-block';
+                            document.getElementById('thirdball').style.display = 'inline-block';
+                            document.getElementById('fourthball').style.display = 'inline-block';
+                            document.getElementById('fifthball').style.display = 'inline-block';
+                        }
+						
+							if (sphere.intersectsMesh(Lifetrue1, false)) {
+	                            lifes++;
+								Lifetrue1.dispose();								
+							}
+							
+							if (sphere.intersectsMesh(Lifetrue2, false)) {
+	                            lifes++;	
+								Lifetrue2.dispose();								
+							}
+							
+							
+						if (sphere.intersectsMesh(Easy1, false)) {
+						
+						teleportation.play();
+						
+								Easy1.position.y = 20;
+								Easy1.position.x = 20;
+								Easy1.position.z = 20;
+							Easy1.visibility = false;
+								
+			   sphere.position.x = scene.getMeshByName("Sphere").position.x;
+               sphere.position.y = scene.getMeshByName("Sphere").position.y+1;//Позиция сферы - СТАРТОВАЯ
+               sphere.position.z = scene.getMeshByName("Sphere").position.z;
+			   
+			   portalSystem2.start();
+			   setTimeout(portalkiller,2000);
+							}
+							
+						if (sphere.intersectsMesh(finalextra, false)&&hallo==0) {	
+						hallo++;
+						checkpoint.play();
+						particleSystem.start();
+						setTimeout(lifekiller,2500);
+						sphere.physicsImpostor.setMass(0);
+						document.getElementById('Menu1').style.display = 'block';
+						document.getElementById('Menu2').style.display = 'block';
+							}
+						
+						
+				if (sphere.intersectsMesh(Easy6, false)) {
+							Bombs.start();
+							setTimeout(bombskiller,3000);
+							
+							Bombs2.start();
+							setTimeout(bombskiller2,3000);
+				}
+				
+				if (sphere.intersectsMesh(Easy7, false)) {
+							Bombs.start();
+							setTimeout(bombskiller,3000);
+							
+							Bombs2.start();
+							setTimeout(bombskiller2,3000);
+				}
+				
+							
+						
+	
+	//////////////////////////////////////////////////////////
+
+
+
+	
+						
+	 },
+	 
+
+	 
+	 
+	 
+	 function(progress) {
+                // To do: give progress feedback to user
+            });
+			 });
+			  });
+
+
+
+
+            // Resize
+            window.addEventListener("resize", function() {
+                engine.resize();
+				
+            });
+	 
+	 
+        </script>
+       
+    </body>
+
+</html>
