@@ -1,58 +1,42 @@
 <html>
 
-
-
- <head>
- <title>BALLANCE </title>
- <div id ="gif" class ="gifa"> </div>
- 
- 
- 
- 
- </head>
- 
- <style>
- 
-.gal3:hover{
-opacity:0;
-}
-.finish1:hover{
-opacity:0;
-}
-
-.finish2:hover{
-opacity:0;
-}
+<style>
 
 
 </style>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js">
 
- 
- <body>
- <div >
-  <img  style = "margin:0; position:absolute;" width="100%" height="100%" border="0" alt="test" src="space3.gif"></img>
-  <img  class="gal2" id="gal2" style = "position:absolute; margin:4%;width:50%;" src = "Gallogram2.png"> </img>
-    <img class="gal3" id="gal3" style = "position:absolute;width:43%;margin:5%; margin-left:7%;" src = "Gallogram.png"> </img>
-	 <a href = "First\ballance.html"><img class="start1" id="start1" style = "position:absolute;margin-top:20%;margin-left:5% " width ="300pt"  src = "firstlevelon.png"> </img></a>
-	<a href = "First\ballance.html"> <img class ="finish1"  style = "position:absolute;margin-top:20%;margin-left:5%" width ="300pt" src = "levelfisrtoff.png"> </img></a>
-	 <a href = "Second\Babylon\second.html"><img class="start2" id="start2" style = "position:absolute;margin-top:25%;margin-left:5% " width ="300pt"  src = "secondon.png"> </img></a>
-	<a href = "Second\Babylon\second.html"> <img class ="finish2"  style = "position:absolute;margin-top:25%;margin-left:5%;" width ="300pt" src = "secondoff.png"> </img></a>
+</script>
+ <head> 
+ <script>
+function lol() {
+//console.log(document.getElementById('MainPlanet').clientWidth)
+//console.log(document.getElementById('MainPlanet').clientHeight)
 
-  <audio controls loop autoplay> <source src = "Dark.mp3"> </audio>
-</div>
+//document.getElementById('MainPlanet').style.width ='500px';
+//document.getElementById('MainPlanet').style.height ='500px';
 
 
 
+
+}
+
+setInterval(lol, 10);
+</script>
+
+  <link rel = "stylesheet" href = "space.css">
+   <img id = "Night"  src = "Night.jpg" style = "width:100%;margin:0px;padding:0px;z-index:0">
+   <a href = "First/ballance.html">  <img title = "First level" id ="fisrtplanet" class = "fisrtplanet" src = "Planetfirst.png" style = "position:absolute; width:8%; height:15%; margin:-25%;margin-left:19%;z-index:3"></a>
+   <img id ="MainPlanet" class ="MainPlanet" src = "MainPlanet.png" style = "position:absolute;width:26%;height:46%;margin-top:-38%;margin-left:35.5%;z-index:2">
+   <a href = "Second/Babylon/second.html">  <img title = "Second level" id ="SecondPlanet" class ="SecondPlanet" src = "Secondlevel.png" style = "position:absolute;width:8%;height:15%;margin-top:-49%;margin-left:35.5%;z-index:2"></a>
+   <img src = "Gallogram.png" style = "position:absolute;margin-left:4%;margin-top:-60%;width:35%">
+   
+   <img id ="Gallogram2" class = "Gallogram2" src = "Gallogram2.png" style = "position:absolute;margin-top:-61%;width:43%;height:12%">
  </head>
+
  <body>
 
- 
  </body>
  
-
- 
-
-
-
 
 </html>
