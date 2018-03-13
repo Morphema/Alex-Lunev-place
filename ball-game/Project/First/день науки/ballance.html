@@ -157,13 +157,12 @@ z-index:1;
     <span id="header"><img id = "firstball" style = "margin-top:2%; margin-left:1.6%" width = "40px" height = "40px" src = "files/1.png"><img id = "secondball" style = "margin-top:2%;" width = "40px" height = "40px" src = "files/1.png"><img id = "thirdball" style = "margin-top:2%;" width = "40px" height = "40px" src = "files/1.png"><img id = "fourthball" style = "margin-top:2%;display:none" width = "40px" height = "40px" src = "files/1.png"><img id = "fifthball" style = "margin-top:2%;display:none" width = "40px" height = "40px" src = "files/1.png"></span>
     <span id="button-right"><img onclick="pullview()"  style = "margin-top:27%;" align = "right" height = "100px" width = "60px" src =  "files/button-right.png"></span>
   <span id = "Time" style = "margin-top:57%; margin-left:2%"> <font style="color:Black;font-style:italic; font-family:serif; font-size:70px"> <span  id="siteTime"></span></font></span>
-   <span style = "display:none" id = "gameover1"  class = "gameover1"><img style = "position:absolute;width:30%; margin-top:37%;margin-left:4%;" src = "Levels/Second/Babylon/Gameover1.png"> </img></span>
+
    
-   <span style = "display:none" id = "gameover2"  class = "gameover2"><img style = "position:absolute;width:30%; margin-top:37%;margin-left:4%;" src = "Levels/Second/Babylon/Gameover2.png"> </img></span>
+   <span style = "display:none" id = "gameover2"  class = "gameover2"><img style = "position:absolute;width:30%; margin-top:37%;margin-left:1%;" src = "Gameover2.png"> </img></span>
    
-   <span style = "display:none" id = "Menu2" class = "Menu2"><a href = "../../../start.html"><img style = "position:absolute;width:15%;margin-left:84.5%;z-index:1;" src = "Levels/Second/Babylon/Menu2.png"> </img></a></span>
-   
-   <span style = "display:none" id = "Menu" class = "Menu"><a href = "../../../start.html"><img style = "position:absolute;width:15%;margin-left:84.5%;z-index:1;" src = "Levels/Second/Babylon/Menu.png"> </img></a></span>
+   <span style = "display:none" id = "Menu2" class = "Menu2"><a href = "../index.html"><img style = "position:absolute;width:15%;margin-left:84.5%;z-index:1;" src = "Menu2.png"> </img></a></span>
+
    
 
   <meta charset="utf-8"/>
@@ -340,6 +339,8 @@ var texture63 = assetsManager.addTextureTask("image task", "Ball_Wood.jpg"); tex
 
                     var watersound1 = new Audio('water.mp3'); //Музыка в конце
                     var watersound2 = new Audio('water2.mp3'); //Музыка в конце
+					var Whatever = new Audio('Bet.mp3');
+					Whatever.play();
 					
           //  var Danger1 = new Audio('Danger1.mp3');
            //   var danger2 = new Audio('danger2.mp3');
@@ -1170,7 +1171,7 @@ move();
 
 
                     var camera = scene.activeCamera;
-                    camera.attachControl(canvas, false);
+                   // camera.attachControl(canvas, false);
                     //sphere.position.x=scene.getMeshByName('Cube1').position.x+1;
                     //sphere.position.y=scene.getMeshByName('Cube1').position.y+6;
                     //sphere.position.z=scene.getMeshByName('Cube1').position.z;
@@ -1395,7 +1396,8 @@ s = 5;
                                 restitution: 0.9
                             }, scene);
 
-							document.getElementById('Menu').style.display = 'block';
+
+						
 							document.getElementById('Menu2').style.display = 'block';
             
                             if (check1 == 0) {
@@ -1517,9 +1519,9 @@ testdanger = 1;
                    sphere.position.y = scene.getMeshByName("Sphere").position.y ;
                    sphere.position.z = scene.getMeshByName("Sphere").position.z;
                                       sphere.dispose();
-									   document.getElementById('gameover1').style.display = 'block';
+									
 							document.getElementById('gameover2').style.display = 'block';
-							document.getElementById('Menu').style.display = 'block';
+						
 							document.getElementById('Menu2').style.display = 'block';
                         }
 //Тут
