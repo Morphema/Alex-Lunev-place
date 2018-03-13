@@ -1,0 +1,305 @@
+Exporter version: 5.4.2, Blender version: 2.79 (sub 0)
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used:
+		selected layers only:  false
+		flat shading entire scene:  true
+		inline textures:  false
+		texture directory:  C:\Users\zaera\Downloads\2nd\
+	Python World class constructor completed
+	WARNING: No active camera has been assigned, or is not in a currently selected Blender layer
+	processing begun of mesh:  Checkpoint2
+		processing begun of Standard material:  [Metal Seamed]
+			Diffuse texture found "Texture.002"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  lat1
+			Diffuse texture found "Texture.003"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  [Polished Concrete New]
+			Diffuse texture found "Texture.001"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  [Stone Masonry Multi]
+			Diffuse texture found "Texture.005"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  brick
+			Diffuse texture found "Texture.004"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of multimaterial:  nd_2.Multimaterial#0
+		num positions      :  4518
+		num normals        :  4518
+		num uvs            :  9036
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4518
+		WARNING: # of 0 area faces found:  16
+	processing begun of mesh:  Checkpoint1
+		mesh is an instance of :  Checkpoint2.  Processing halted.
+	processing begun of mesh:  Portalfinish
+		registered as also a user of material:  [Metal Seamed]
+		registered as also a user of material:  lat1
+		registered as also a user of material:  brick
+		registered as also a user of material:  [Polished Concrete New]
+		registered as also a user of material:  [Stone Masonry Multi]
+		processing begun of multimaterial:  nd_2.Multimaterial#1
+		num positions      :  4542
+		num normals        :  4542
+		num uvs            :  9084
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4542
+		WARNING: # of 0 area faces found:  34
+	processing begun of mesh:  Portal_start
+		mesh is an instance of :  Portalfinish.  Processing halted.
+	processing begun of mesh:  Life2
+		processing begun of Standard material:  Material
+		num positions      :  2160
+		num normals        :  2160
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  2160
+	processing begun of mesh:  Life1
+		mesh is an instance of :  Life2.  Processing halted.
+	processing begun of mesh:  Easy4
+		mesh is an instance of :  Life2.  Processing halted.
+	processing begun of mesh:  Easy3
+		mesh is an instance of :  Life2.  Processing halted.
+	processing begun of mesh:  Easy2
+		mesh is an instance of :  Life2.  Processing halted.
+	processing begun of mesh:  Easy1
+		mesh is an instance of :  Life2.  Processing halted.
+	processing begun of mesh:  Easy6
+		mesh is an instance of :  Life2.  Processing halted.
+	processing begun of mesh:  Easy7
+		mesh is an instance of :  Life2.  Processing halted.
+	processing begun of mesh:  Easy5
+		mesh is an instance of :  Life2.  Processing halted.
+	processing begun of mesh:  Sphere
+		registered as also a user of material:  Material
+		num positions      :  2160
+		num normals        :  2160
+		num uvs            :  0
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  2160
+	processing begun of mesh:  G-Final_Step
+		processing begun of Standard material:  Light_metal
+			Diffuse texture found "Texture.007"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  Light_steel
+			Diffuse texture found "Texture.009"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  Gaika_metal
+			Diffuse texture found "Texture.011"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of multimaterial:  nd_2.Multimaterial#2
+		num positions      :  210
+		num normals        :  210
+		num uvs            :  420
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  210
+	processing begun of mesh:  G-Final_Road
+		registered as also a user of material:  Material
+		registered as also a user of material:  Light_metal
+		registered as also a user of material:  Light_steel
+		processing begun of Standard material:  Zamok_metal
+			Diffuse texture found "Texture"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		registered as also a user of material:  Gaika_metal
+		processing begun of multimaterial:  nd_2.Multimaterial#3
+		num positions      :  4092
+		num normals        :  4092
+		num uvs            :  8184
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4092
+	processing begun of mesh:  G-Hill
+		registered as also a user of material:  Zamok_metal
+		registered as also a user of material:  Material
+		processing begun of Standard material:  [Metal Steel Textured White]
+			Diffuse texture found "Texture.014"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  [Metal Embossed]
+			Diffuse texture found "Texture.016"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  Moon_Ball
+			Diffuse texture found "Texture.017"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		registered as also a user of material:  Light_metal
+		processing begun of multimaterial:  nd_2.Multimaterial#4
+		num positions      :  10197
+		num normals        :  10197
+		num uvs            :  20394
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  10197
+	processing begun of mesh:  G-Second_road
+		registered as also a user of material:  Zamok_metal
+		processing begun of Standard material:  Metal_road
+			Diffuse texture found "Texture.018"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of multimaterial:  nd_2.Multimaterial#5
+		num positions      :  60
+		num normals        :  60
+		num uvs            :  120
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  60
+	processing begun of mesh:  G-Next_Corner
+		registered as also a user of material:  Light_metal
+		registered as also a user of material:  Material
+		registered as also a user of material:  Zamok_metal
+		registered as also a user of material:  Metal_road
+		registered as also a user of material:  Gaika_metal
+		processing begun of Standard material:  Platform_metal
+			Diffuse texture found "Texture.010"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of multimaterial:  nd_2.Multimaterial#6
+		num positions      :  5778
+		num normals        :  5778
+		num uvs            :  11556
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  5778
+	processing begun of mesh:  G-Corner
+		registered as also a user of material:  Light_metal
+		registered as also a user of material:  Material
+		registered as also a user of material:  Zamok_metal
+		registered as also a user of material:  Gaika_metal
+		registered as also a user of material:  Platform_metal
+		processing begun of multimaterial:  nd_2.Multimaterial#7
+		num positions      :  15969
+		num normals        :  15969
+		num uvs            :  31938
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  15969
+	processing begun of mesh:  G-Next_road
+		registered as also a user of material:  Platform_metal
+		registered as also a user of material:  Light_metal
+		registered as also a user of material:  Zamok_metal
+		registered as also a user of material:  Gaika_metal
+		processing begun of multimaterial:  nd_2.Multimaterial#8
+		num positions      :  5352
+		num normals        :  5352
+		num uvs            :  10704
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  5352
+	processing begun of mesh:  G-Long_road
+		registered as also a user of material:  Zamok_metal
+		num positions      :  450
+		num normals        :  450
+		num uvs            :  900
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  450
+	processing begun of mesh:  G-Big_Corner
+		registered as also a user of material:  Material
+		registered as also a user of material:  Light_metal
+		registered as also a user of material:  Light_steel
+		registered as also a user of material:  Zamok_metal
+		registered as also a user of material:  Gaika_metal
+		processing begun of multimaterial:  nd_2.Multimaterial#9
+		num positions      :  5385
+		num normals        :  5385
+		num uvs            :  10770
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  5385
+	processing begun of mesh:  G-Truba
+		processing begun of Standard material:  [Aluminum]
+			Diffuse texture found "Texture.015"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  Violet_Glass
+		processing begun of multimaterial:  nd_2.Multimaterial#10
+		num positions      :  6984
+		num normals        :  6984
+		num uvs            :  13968
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  6984
+	processing begun of camera (UniversalCamera):  Active Camera
+	processing begun of mesh:  G-Little_road
+		processing begun of Standard material:  Light_steel.001
+			Diffuse texture found "Texture.022"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  [Metal Steel Textured White].001
+			Diffuse texture found "Texture.021"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  [Metal Embossed]1.001
+			Diffuse texture found "Texture.020"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  Standart.001
+			Diffuse texture found "Texture.019"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of multimaterial:  nd_2.Multimaterial#11
+		num positions      :  2544
+		num normals        :  2544
+		num uvs            :  5088
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  2544
+	processing begun of mesh:  Light1
+		processing begun of Standard material:  Light_st
+			Diffuse texture found "Texture.006"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  Portal_m
+			Diffuse texture found "Texture.008"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  Light_me
+			Diffuse texture found "Texture.012"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of Standard material:  Light_li
+			Diffuse texture found "Texture.013"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of multimaterial:  nd_2.Multimaterial#12
+		num positions      :  4644
+		num normals        :  4644
+		num uvs            :  9288
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4644
+	processing begun of mesh:  Light4
+		processing begun of Standard material:  FrontCol
+		registered as also a user of material:  Light_me
+		registered as also a user of material:  Light_st
+		registered as also a user of material:  Portal_m
+		registered as also a user of material:  Light_li
+		processing begun of multimaterial:  nd_2.Multimaterial#13
+		num positions      :  4644
+		num normals        :  4644
+		num uvs            :  9288
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4644
+	processing begun of mesh:  Light3
+		registered as also a user of material:  Portal_m
+		registered as also a user of material:  Light_st
+		registered as also a user of material:  Light_me
+		registered as also a user of material:  Light_li
+		processing begun of multimaterial:  nd_2.Multimaterial#14
+		num positions      :  4644
+		num normals        :  4644
+		num uvs            :  9288
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4644
+	processing begun of mesh:  Light2
+		registered as also a user of material:  Portal_m
+		registered as also a user of material:  Light_st
+		registered as also a user of material:  FrontCol
+		registered as also a user of material:  Light_me
+		registered as also a user of material:  Light_li
+		processing begun of multimaterial:  nd_2.Multimaterial#15
+		num positions      :  4644
+		num normals        :  4644
+		num uvs            :  9288
+		num uvs2           :  0
+		num colors         :  18576
+		num indices        :  4644
+	processing begun of light (SUN):  Sun
+========= Writing of scene file started =========
+========= Writing of scene file completed =========
+========= end of processing =========
+elapsed time:  0 min, 4.4261 secs
