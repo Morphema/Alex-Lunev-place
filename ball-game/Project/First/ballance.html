@@ -249,7 +249,8 @@ var testdanger = 0;
             var Music3 = 0;
             var Portalzero = 0;
             var Portalfisrt = 0;
-			
+			var camerachange = 0;
+			var camerachange2 = 0;
 			var Dragons = new Audio('Levels/Second/Babylon/Audio/Dragons.mp3');
 			Dragons.play();
             var canvas = document.getElementById("renderCanvas");//Задаём покадровый рендер
@@ -388,9 +389,9 @@ var texture63 = assetsManager.addTextureTask("image task", "Ball_Wood.jpg"); tex
                    //sphere.position.y = scene.getMeshByName("Wood").position.y ;   ///ПОЗИЦИЯ СФЕРЫ
                  // sphere.position.z = scene.getMeshByName("Wood").position.z+3;
            
-           //sphere.position.x = scene.getMeshByName("Cube1").position.x+2;
-           //      sphere.position.y = scene.getMeshByName("Cube1").position.y + 1;
-           //        sphere.position.z = scene.getMeshByName("Cube1").position.z;
+          // sphere.position.x = scene.getMeshByName("Cube1").position.x+2;
+          // sphere.position.y = scene.getMeshByName("Cube1").position.y + 1;
+          // sphere.position.z = scene.getMeshByName("Cube1").position.z;
         
 
 
@@ -1204,7 +1205,11 @@ move();
 					
 					
 					
-					
+					function normcamera() {
+					camera.position.z = sphere.position.z;
+                        camera.position.x = sphere.position.x - 4;					
+						camera.position.y = sphere.position.y-1.5;
+					}
 					
 					
 					
@@ -1256,7 +1261,33 @@ move();
                           scene.getMeshByName('Cube3').rotate.y=cuberotatefixer3y; */
 
                         camera.position.z = sphere.position.z;
-                        camera.position.x = sphere.position.x - 6;
+                        camera.position.x = sphere.position.x - 4;
+						
+						if(sphere.intersectsMesh(Cube,false)&&camerachange==0){
+						camera.position.z = sphere.position.z;
+                        camera.position.x = sphere.position.x - 4;					
+						 camera.position.y = sphere.position.y+3;
+						 camerachange++;
+						}
+						
+						if(sphere.intersectsMesh(Final,false)&&camerachange2==0){
+						camera.position.z = sphere.position.z;
+                        camera.position.x = sphere.position.x - 4;
+						 camera.position.y = sphere.position.y+4.5;
+						 camerachange2++;
+						}
+						
+						if(camerachange2>0&&sphere.position.y< -1.5)
+						{
+						setTimeout(normcamera,10);
+						camerachange2=0;
+						}
+						
+						if(camerachange>0&&sphere.position.y< -1.5)
+						{
+								setTimeout(normcamera,10);
+									camerachange=0;
+						}
 
                         if (sphere.intersectsMesh(track1, false)) {
                             //Звук качение по камню var RollWoodStone = new Audio('Roll_Wood_Stone.wav');
@@ -1270,6 +1301,11 @@ move();
                             }
 
                         }
+						
+						
+                        
+
+                        
 
 
 
@@ -1307,6 +1343,8 @@ move();
                             sphere.position.x = scene.getMeshByName("Sphere").position.x;
                             sphere.position.y = scene.getMeshByName("Sphere").position.y;
                             sphere.position.z = scene.getMeshByName("Sphere").position.z;
+							
+							//Часть с корзиной
                         var sphere11 = BABYLON.Mesh.CreateSphere("sphere11",60,2.2,scene);   
           
           var materialsphere11 = new BABYLON.StandardMaterial("texture1", scene);
@@ -1347,7 +1385,7 @@ move();
         
 
 
-sphere.setEnabled(1);
+           sphere.setEnabled(1);
 
                                 particleSystem1.stop(); //Остановка
               //  sphere.physicsImpostor.setMass(15);
